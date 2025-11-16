@@ -12,8 +12,8 @@ model = load_model()
 
 # UI Title & Header
 st.set_page_config(page_title="Swasthya Alert", layout="wide")
-st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Typhoid Outbreak Prediction</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; font-size:18px;'>Enter water quality & environmental parameters to predict outbreak risk</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:18px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
 st.write("---")
 
@@ -70,8 +70,7 @@ with center:
         prediction = model.predict(input_data)[0]
 
         if prediction == 1:
-            st.error("🚨 **HIGH RISK:** Typhoid outbreak likely")
+            st.error("🚨 **HIGH RISK:** Outbreak likely")
             st.warning("⚠️ Immediate preventive action recommended!")
         else:
-            st.success("✅ **LOW RISK:** Typhoid outbreak unlikely")
-
+            st.success("✅ **LOW RISK:** Outbreak unlikely")
