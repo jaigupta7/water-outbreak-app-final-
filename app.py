@@ -53,7 +53,7 @@ st.markdown(
 
 st.markdown("""
     <h1 style='text-align: center; color: #2E86C1;'>🛡 Swasthya Alert</h1>
-    <h3 style='text-align: center;'>Outbreak Prediction System</h3>
+    <h3 style='text-align: center;'>Early Warning System for Water-Related Disease Outbreaks</h3>
     """, unsafe_allow_html=True)
 
 st.write("---")
@@ -118,3 +118,4 @@ with center:
             st.warning("⚠ Immediate preventive action recommended!")
         else:
             st.success("✅ *LOW RISK:* Outbreak unlikely")
+
