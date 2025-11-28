@@ -16,49 +16,34 @@ st.set_page_config(page_title="Swasthya Alert", layout="wide")
 # --------------------------------------------------------
 # 🔥 GLOBAL CSS FOR LARGE FONT SIZE
 # --------------------------------------------------------
+st.set_page_config(page_title="Swasthya Alert", layout="wide")
+
+# 🔥 ADD THIS CSS RIGHT HERE
 st.markdown("""
 <style>
 
-/* Main widget labels (📅 Year, ⚗️ pH Level, etc.) */
-.st-emotion-cache-ue6h4q, .st-emotion-cache-1qg05tj {
-    font-size: 28px !important;
+label {
+    font-size: 30px !important;
     font-weight: 700 !important;
-    color: #000000 !important;
+    color: #000 !important;
 }
 
-/* Number input box text */
 input[type=number] {
     font-size: 24px !important;
-    font-weight: 600 !important;
     height: 55px !important;
 }
 
-/* Text box & selectbox visible text */
-input[type=text], .st-emotion-cache-1wivap2 {
+.css-6hp17o, .css-1wa3eu0-placeholder {
     font-size: 24px !important;
-    font-weight: 600 !important;
-}
-
-/* Selectbox dropdown list text */
-div[role="listbox"] div {
-    font-size: 22px !important;
-}
-
-/* Increase space between fields */
-.stNumberInput, .stSelectbox {
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-}
-
-/* Increase button font size */
-button[kind="primary"] {
-    font-size: 24px !important;
-    font-weight: 700 !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-# --------------------------------------------------------
+# -----------------------------
+
+# Your normal code continues below
+st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:18px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
 
 # Title
@@ -124,3 +109,4 @@ with center:
             st.warning("⚠️ Immediate preventive action recommended!")
         else:
             st.success("✅ **LOW RISK:** Outbreak unlikely")
+
