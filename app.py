@@ -12,18 +12,6 @@ model = load_model()
 
 # UI Title & Header
 st.set_page_config(page_title="Swasthya Alert", layout="wide")
-
-# 🔥 Custom CSS for Bigger Labels
-st.markdown("""
-    <style>
-    label, .stNumberInput label, .stSelectbox label {
-        font-size: 20px !important;
-        font-weight: 600 !important;
-        color: #1b3d2f !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡 Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; font-size:26px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
