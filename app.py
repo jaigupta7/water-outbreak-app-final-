@@ -10,21 +10,65 @@ def load_model():
 
 model = load_model()
 
-# UI Title & Header
+# Page config
 st.set_page_config(page_title="Swasthya Alert", layout="wide")
-st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡 Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; font-size:26px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
+
+# ---------------------------------------------------------------
+# 🔥 GLOBAL CSS — INCREASE LABEL SIZE + INPUT SIZE
+# ---------------------------------------------------------------
+st.markdown("""
+<style>
+
+ /* Increase ALL widget labels (📅 Year, ⚗️ pH Level etc.) */
+label {
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+}
+
+/* Increase number input text (inside box) */
+input[type=number] {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    height: 55px !important;
+}
+
+/* Increase selectbox visible text */
+div[data-baseweb="select"] > div {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}
+
+/* Increase dropdown menu text */
+ul[role="listbox"] li {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}
+
+/* Optionally increase spacing between elements */
+.stNumberInput, .stSelectbox {
+    margin-bottom: 18px !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+# ---------------------------------------------------------------
+
+
+# UI Title
+st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:20px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
 st.write("---")
 
-# Split layout
+# Layout
 col1, col2, col3 = st.columns(3)
 
 with col1:
     Year = st.number_input("📅 Year", 1900, 2100, 2024)
     Contaminant = st.number_input("🧪 Contaminant Level (ppm)", 0.0, 500.0, 7.0)
-    pH = st.number_input("⚗ pH Level", 0.0, 14.0, 7.0)
-    Turbidity = st.number_input("🌫 Turbidity (NTU)", 0.0, 100.0, 2.0)
+    pH = st.number_input("⚗️ pH Level", 0.0, 14.0, 7.0)
+    Turbidity = st.number_input("🌫️ Turbidity (NTU)", 0.0, 100.0, 2.0)
     DO = st.number_input("💧 Dissolved Oxygen (mg/L)", 0.0, 20.0, 7.0)
     Nitrate = st.number_input("🌱 Nitrate Level (mg/L)", 0.0, 100.0, 10.0)
     Lead = st.number_input("🔩 Lead Concentration (µg/L)", 0.0, 100.0, 5.0)
@@ -41,10 +85,11 @@ with col3:
     Healthcare = st.number_input("🏥 Healthcare Access Index", 0.0, 100.0, 50.0)
     Urbanization = st.number_input("🏙 Urbanization Rate (%)", 0.0, 100.0, 40.0)
     Sanitation = st.number_input("🚿 Sanitation Coverage (%)", 0.0, 100.0, 60.0)
-    Rainfall = st.number_input("🌧 Rainfall (mm/year)", 0.0, 5000.0, 1000.0)
-    Temperature = st.number_input("🌡 Temperature (°C)", 0.0, 50.0, 25.0)
+    Rainfall = st.number_input("🌧️ Rainfall (mm/year)", 0.0, 5000.0, 1000.0)
+    Temperature = st.number_input("🌡️ Temperature (°C)", 0.0, 50.0, 25.0)
     Population = st.number_input("👥 Population Density", 0.0, 10000.0, 500.0)
 
+# Water Treatment Method
 st.write("### 💧 Water Treatment Method")
 treatment = st.selectbox("", ["Boiling", "Chlorination", "Filtration", "Unknown"])
 
@@ -53,7 +98,7 @@ Water_Chlorination = 1 if treatment == "Chlorination" else 0
 Water_Filtration = 1 if treatment == "Filtration" else 0
 Water_Unknown = 1 if treatment == "Unknown" else 0
 
-# Input array (order important)
+# Input vector
 input_data = np.array([[
     Year, Contaminant, pH, Turbidity, DO, Nitrate, Lead, Bacteria,
     CleanWater, Diarrhea, Cholera, InfantMortality, GDP, Healthcare,
@@ -61,7 +106,7 @@ input_data = np.array([[
     Water_Chlorination, Water_Filtration, Water_Unknown
 ]])
 
-# Prediction button
+# Predict Button
 st.write("---")
 center = st.columns(3)[1]
 
@@ -70,7 +115,7 @@ with center:
         prediction = model.predict(input_data)[0]
 
         if prediction == 1:
-            st.error("🚨 *HIGH RISK:* Outbreak likely")
-            st.warning("⚠ Immediate preventive action recommended!")
+            st.error("🚨 **HIGH RISK:** Outbreak likely")
+            st.warning("⚠️ Immediate preventive action recommended!")
         else:
-            st.success("✅ *LOW RISK:* Outbreak unlikely")
+            st.success("✅ **LOW RISK:** Outbreak unlikely")
