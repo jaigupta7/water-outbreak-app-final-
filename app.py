@@ -12,8 +12,47 @@ model = load_model()
 
 # UI Title & Header
 st.set_page_config(page_title="Swasthya Alert", layout="wide")
+
+# ----------- GLOBAL CSS FOR BIG FONT ------------
+st.markdown("""
+<style>
+
+/* Increase label font size */
+.stNumberInput label, .stSelectbox label {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+}
+
+/* Increase font inside number input boxes */
+input[type=number], input[type=text] {
+    font-size: 20px !important;
+    height: 45px !important;
+}
+
+/* Increase selectbox text */
+.css-16huue1, .css-q8sbsg, .stSelectbox div {
+    font-size: 20px !important;
+}
+
+/* Increase button font */
+button[kind="primary"] {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+/* Improve spacing */
+.stNumberInput, .stSelectbox {
+    margin-bottom: 18px !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+# --------------------------------------------------
+
+
 st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; font-size:26px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:20px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
 st.write("---")
 
@@ -51,27 +90,3 @@ treatment = st.selectbox("", ["Boiling", "Chlorination", "Filtration", "Unknown"
 # One-hot encoding
 Water_Chlorination = 1 if treatment == "Chlorination" else 0
 Water_Filtration = 1 if treatment == "Filtration" else 0
-Water_Unknown = 1 if treatment == "Unknown" else 0
-
-# Input array (order important)
-input_data = np.array([[
-    Year, Contaminant, pH, Turbidity, DO, Nitrate, Lead, Bacteria,
-    CleanWater, Diarrhea, Cholera, InfantMortality, GDP, Healthcare,
-    Urbanization, Sanitation, Rainfall, Temperature, Population,
-    Water_Chlorination, Water_Filtration, Water_Unknown
-]])
-
-# Prediction button
-st.write("---")
-center = st.columns(3)[1]
-
-with center:
-    if st.button("🔍 Predict Outbreak Risk", use_container_width=True):
-        prediction = model.predict(input_data)[0]
-
-        if prediction == 1:
-            st.error("🚨 **HIGH RISK:** Outbreak likely")
-            st.warning("⚠️ Immediate preventive action recommended!")
-        else:
-            st.success("✅ **LOW RISK:** Outbreak unlikely")
-
