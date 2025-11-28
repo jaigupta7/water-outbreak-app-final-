@@ -23,15 +23,26 @@ st.set_page_config(page_title="Swasthya Alert", layout="wide")
 st.markdown(
     """
     <style>
-    /* Target the labels of number inputs and select boxes */
-    .stNumberInput label p, .stSelectbox label p {
-        font-size: 1.8rem !important; /* VERY LARGE (approx 29px) */
-        font-weight: 700 !important;  /* Extra Bold */
-        margin-bottom: 5px !important; /* Add space below the big text */
+
+    /* Increase the text INSIDE number input boxes */
+    input[type=number] {
+        font-size: 1.6rem !important;   /* around 26px */
+        font-weight: 600 !important;
+        padding: 8px 12px !important;
+        height: 55px !important;
     }
+
+    /* Increase selectbox input text */
+    .stSelectbox div[class*="css-"] {
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
+)
+
 )
 
 st.markdown("""
@@ -101,3 +112,4 @@ with center:
             st.warning("⚠ Immediate preventive action recommended!")
         else:
             st.success("✅ *LOW RISK:* Outbreak unlikely")
+
