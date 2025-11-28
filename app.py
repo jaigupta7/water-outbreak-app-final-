@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd
+import pandas as np
 import numpy as np
 import joblib
 
@@ -14,38 +14,38 @@ model = load_model()
 st.set_page_config(page_title="Swasthya Alert", layout="wide")
 
 # ---------------------------------------------------------------
-# 🔥 GLOBAL CSS — INCREASE LABEL SIZE + INPUT SIZE
+# 🔥 CSS FIX (Correct selector for bigger headings & input text)
 # ---------------------------------------------------------------
 st.markdown("""
 <style>
 
- /* Increase ALL widget labels (📅 Year, ⚗️ pH Level etc.) */
-label {
+/* 🎯 Make all input headings bigger (this is the correct Streamlit selector) */
+div[data-testid="stWidgetLabel"] {
     font-size: 30px !important;
-    font-weight: 700 !important;
-    color: #000 !important;
+    font-weight: 800 !important;
+    color: black !important;
 }
 
-/* Increase number input text (inside box) */
+/* Increase input text size (inside number boxes) */
 input[type=number] {
     font-size: 24px !important;
     font-weight: 600 !important;
     height: 55px !important;
 }
 
-/* Increase selectbox visible text */
+/* Increase selectbox text */
 div[data-baseweb="select"] > div {
     font-size: 24px !important;
     font-weight: 600 !important;
 }
 
-/* Increase dropdown menu text */
+/* Increase dropdown items */
 ul[role="listbox"] li {
     font-size: 24px !important;
     font-weight: 600 !important;
 }
 
-/* Optionally increase spacing between elements */
+/* Add spacing between fields */
 .stNumberInput, .stSelectbox {
     margin-bottom: 18px !important;
 }
@@ -55,9 +55,9 @@ ul[role="listbox"] li {
 # ---------------------------------------------------------------
 
 
-# UI Title
+# Title
 st.markdown("<h1 style='text-align:center; color:#2C6E49;'>🛡️ Swasthya Alert – Outbreak Prediction System</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; font-size:20px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:22px;'>Enter water quality & environmental parameters to assess outbreak risk</p>", unsafe_allow_html=True)
 
 st.write("---")
 
